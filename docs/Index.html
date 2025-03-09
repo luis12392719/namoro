@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tempo de Namoro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos do site */
+        body {
+            font-family: 'Archivo Black', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffcccc;
+            text-align: center;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #ff6699;
+        }
+
+        #contador {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .foto {
+            margin-top: 20px;
+            max-width: 70%; /* Reduz a largura máxima da imagem */
+            height: auto; /* Mantém a proporção */
+            border-radius: 10px;
+        }
+
+        .mensagem {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #ff6699;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Estamos juntos há:</h1>
+        <p id="contador"></p>
+
+        <!-- Foto do casal -->
+        <img class="foto" src="IMG-20250309-WA0002.jpg" alt="Nossa foto juntos">
+
+        <!-- Texto -->
+        <p class="mensagem">Te amo muito princesa, estarei ao seu lado para sempre 🫶🏻🫶🏻</p>
+    </div>
+
+    <script>
+        // Data de início do namoro (26 de julho de 2024 às 19:30:00)
+        const dataInicio = new Date(2024, 5, 26, 19, 30, 0); // Mês é 0-indexado (Julho = 6)
+
+        function calcularTempo() {
+            const agora = new Date();
+            const diff = agora - dataInicio; // Diferença em milissegundos
+
+            const segundos = Math.floor(diff / 1000);
+            const minutos = Math.floor(segundos / 60);
+            const horas = Math.floor(minutos / 60);
+            const dias = Math.floor(horas / 24);
+            const anos = Math.floor(dias / 365);
+            const meses = Math.floor((dias % 365) / 30);
+            const diasRestantes = (dias % 365) % 30;
+            const horasRestantes = horas % 24;
+            const minutosRestantes = minutos % 60;
+            const segundosRestantes = segundos % 60;
+
+            let texto = ${anos} anos, ${meses} meses, ${diasRestantes} dias, ${horasRestantes}h ${minutosRestantes}m ${segundosRestantes}s;
+
+            document.getElementById("contador").innerText = texto;
+        }
+
+        // Atualiza o contador a cada segundo
+        setInterval(calcularTempo, 1000);
+
+        // Exibe o tempo assim que a página carregar
+        calcularTempo();
+    </script>
+</body>
+</html>
+
